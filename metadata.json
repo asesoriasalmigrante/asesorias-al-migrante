@@ -1,0 +1,6 @@
+{
+  "name": "Asesorías al Migrante",
+  "description": "Página web oficial de Asesorías al Migrante - Daniela Harrington. Orientación legal y migratoria clara, empática y profesional para EE.UU.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

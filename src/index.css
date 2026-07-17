@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* ==========================================================================
+     CAMBIA LAS IMÁGENES DE LA WEB AQUÍ DIRECTAMENTE (RUTAS LOCALES O URLS)
+     ========================================================================== */
+  --hero-image-url: url('./assets/images/daniela_hero_workspace_1784117466914.jpg');
+  --portrait-image-url: url('./assets/images/WhatsApp image 2026 at 8.59.44 am.jpeg');
+  --world-map-dots-url: url('./assets/images/world_map_dots.svg');
+
+  --service-migrar-image-url: url('./assets/images/service_migrar_1784210830190.jpg');
+  --service-proceso-image-url: url('./assets/images/service_proceso_1784210845041.jpg');
+  --service-orientacion-image-url: url('./assets/images/service_orientacion_1784210859253.jpg');
+
+  --method-situacion-image-url: url('./assets/images/method_situacion_1784210872122.jpg');
+  --method-opciones-image-url: url('./assets/images/method_opciones_1784210885858.jpg');
+  --method-estrategia-image-url: url('./assets/images/method_estrategia_1784210898730.jpg');
+  --method-acompanamiento-image-url: url('./assets/images/method_acompanamiento_1784210912530.jpg');
+
+  /* SOBRE MÍ - 3D GOLD EMBOSSED ICONS */
+  --about-academica-icon-url: url('./assets/images/icon_about_academica_1784294326607.jpg');
+  --about-complementaria-icon-url: url('./assets/images/icon_about_complementaria_1784294341369.jpg');
+  --about-personal-icon-url: url('./assets/images/icon_about_personal_1784294353537.jpg');
+  --about-experiencia-icon-url: url('./assets/images/icon_about_experiencia_1784294371159.jpg');
+  --about-filosofia-icon-url: url('./assets/images/icon_about_filosofia_1784294385938.jpg');
+  --about-mas-alla-icon-url: url('./assets/images/icon_about_mas_alla_1784294401042.jpg');
+  --about-migrante-icon-url: url('./assets/images/icon_about_migrante_1784295355003.jpg');
+}
+
+@theme {
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Playfair Display", Georgia, serif;
+  
+  --color-brand-blue: #0C1E36;
+  --color-brand-accent: #E79923;
+  --color-brand-secondary: #2563EB;
+  --color-brand-bg: #030814;
+  --color-brand-text: #E2E8F0;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-brand-text);
+    background-color: var(--color-brand-bg);
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.01em;
+  }
+}
+
+/* ==========================================================================
+   CLASES DE UTILIDAD PARA IMÁGENES DESDE EL CSS
+   ========================================================================== */
+.custom-hero-img {
+  background-image: var(--hero-image-url);
+  background-size: cover;
+  background-position: center;
+}
+
+.custom-portrait-img {
+  background-image: var(--portrait-image-url);
+  background-size: cover;
+  background-position: center;
+}
+
+.custom-world-map-img {
+  background-image: var(--world-map-dots-url);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.custom-service-migrar-img {
+  background-image: var(--service-migrar-image-url);
+  background-size: cover;
+  background-position: center;
+}
+
+.custom-service-proceso-img {
+  background-image: var(--service-proceso-image-url);
+  background-size: cover;
+  background-position: center;
+}
+
+.custom-service-orientacion-img {
+  background-image: var(--service-orientacion-image-url);
+  background-size: cover;
+  background-position: center;
+}
+
+.custom-method-situacion-img {
+  background-image: var(--method-situacion-image-url);
+  background-size: cover;
+  background-position: center;
+}
+
+.custom-method-opciones-img {
+  background-image: var(--method-opciones-image-url);
+  background-size: cover;
+  background-position: center;
+}
+
+.custom-method-estrategia-img {
+  background-image: var(--method-estrategia-image-url);
+  background-size: cover;
+  background-position: center;
+}
+
+.custom-method-acompanamiento-img {
+  background-image: var(--method-acompanamiento-image-url);
+  background-size: cover;
+  background-position: center;
+}
+
+.custom-about-academica-icon {
+  background-image: var(--about-academica-icon-url);
+  background-size: cover;
+  background-position: center;
+}
+
+.custom-about-complementaria-icon {
+  background-image: var(--about-complementaria-icon-url);
+  background-size: cover;
+  background-position: center;
+}
+
+.custom-about-personal-icon {
+  background-image: var(--about-personal-icon-url);
+  background-size: cover;
+  background-position: center;
+}
+
+.custom-about-experiencia-icon {
+  background-image: var(--about-experiencia-icon-url);
+  background-size: cover;
+  background-position: center;
+}
+
+.custom-about-filosofia-icon {
+  background-image: var(--about-filosofia-icon-url);
+  background-size: cover;
+  background-position: center;
+}
+
+.custom-about-mas-alla-icon {
+  background-image: var(--about-mas-alla-icon-url);
+  background-size: cover;
+  background-position: center;
+}
+
+.custom-about-migrante-icon {
+  background-image: var(--about-migrante-icon-url);
+  background-size: cover;
+  background-position: center;
+}
+
+
+
