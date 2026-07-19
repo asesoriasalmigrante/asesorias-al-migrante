@@ -272,6 +272,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
       id="inicio"
       className="relative bg-brand-blue text-white pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden"
     >
+      {/* World Map Background - Only behind text area */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[600px] h-[400px] custom-world-map-hero opacity-15" />
+      </div>
+
       {/* Decorative background radial glows */}
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-secondary/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[400px] h-[400px] bg-brand-accent/5 rounded-full blur-3xl pointer-events-none" />
@@ -349,16 +354,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-5 relative"
+            className="lg:col-span-5 relative -mr-8 lg:-mr-16"
           >
-            {/* Background elements overlaying image */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue/40 via-transparent to-transparent rounded-2xl z-10 pointer-events-none" />
-            <div className="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-brand-accent/20 rounded-tl-2xl -z-10" />
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-brand-accent/20 rounded-br-2xl -z-10" />
-
-            <div className="overflow-hidden rounded-2xl shadow-2xl bg-white/5 border border-white/10 aspect-[4/3] sm:aspect-[16/9] lg:aspect-[4/3] flex items-center justify-center">
+            <div className="overflow-hidden bg-transparent flex items-end justify-center">
               <div
-                className="w-full h-full custom-hero-img"
+                className="w-full h-[450px] lg:h-[550px] custom-hero-img"
+                style={{
+                  WebkitMaskImage: 'linear-gradient(to left, black 60%, rgba(0,0,0,.8) 75%, rgba(0,0,0,.4) 88%, transparent 100%)',
+                  maskImage: 'linear-gradient(to left, black 60%, rgba(0,0,0,.8) 75%, rgba(0,0,0,.4) 88%, transparent 100%)'
+                }}
                 aria-label="Abogada Daniela Harrington en su despacho legal"
               />
             </div>

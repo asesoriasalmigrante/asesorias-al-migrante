@@ -5,8 +5,8 @@
   /* ==========================================================================
      CAMBIA LAS IMÁGENES DE LA WEB AQUÍ DIRECTAMENTE (RUTAS LOCALES O URLS)
      ========================================================================== */
-  --hero-image-url: url('./assets/images/daniela_hero_workspace_1784117466914.jpg');
-  --portrait-image-url: url('./assets/images/WhatsApp image 2026 at 8.59.44 am.jpeg');
+  --hero-image-url: url('./assets/images/imagen_principal.jpeg');
+  --portrait-image-url: url('./assets/images/daniela_oficina.jpeg');
   --world-map-dots-url: url('./assets/images/world_map_dots.svg');
 
   --service-migrar-image-url: url('./assets/images/service_migrar_1784210830190.jpg');
@@ -60,6 +60,15 @@
   background-image: var(--hero-image-url);
   background-size: cover;
   background-position: center;
+  -webkit-mask-image: linear-gradient(to left, black 60%, rgba(0,0,0,.8) 75%, rgba(0,0,0,.4) 88%, transparent 100%);
+  mask-image: linear-gradient(to left, black 60%, rgba(0,0,0,.8) 75%, rgba(0,0,0,.4) 88%, transparent 100%);
+}
+
+.custom-world-map-hero {
+  background-image: var(--world-map-dots-url);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left center;
 }
 
 .custom-portrait-img {
@@ -73,6 +82,7 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  opacity: 0.2;
 }
 
 .custom-service-migrar-img {

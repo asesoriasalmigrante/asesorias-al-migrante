@@ -253,7 +253,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-brand-bg text-brand-text relative overflow-x-hidden">
       {/* Background World Map Dotted Texture */}
-      <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.035] flex items-center justify-center select-none overflow-hidden">
+      <div className="fixed inset-0 z-0 pointer-events-none flex items-center justify-center select-none overflow-hidden">
         <div className="w-full h-full max-w-7xl transform scale-110 lg:scale-125 translate-y-4 custom-world-map-img" />
       </div>
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Calendar, Clock, User, Mail, Phone, FileText, CheckCircle2, ChevronLeft, ChevronRight, Copy, Check, Printer, CalendarRange, CreditCard, Lock, ShieldCheck, AlertCircle } from 'lucide-react';
+import { X, Calendar, Clock, User, Mail, Phone, FileText, CheckCircle2, ChevronLeft, ChevronRight, Copy, Check, Printer, CalendarRange, Lock, ShieldCheck, AlertCircle } from 'lucide-react';
 import { Service } from '../types';
 
 interface BookingModalProps {
@@ -20,11 +20,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   const [serviceId, setServiceId] = useState(selectedServiceId || services[0]?.id || '');
   
   // Payment states
-  const [paymentMethod, setPaymentMethod] = useState<'card' | 'paypal' | 'mercadopago' | 'binance'>('card');
-  const [cardNumber, setCardNumber] = useState('');
-  const [cardExpiry, setCardExpiry] = useState('');
-  const [cardCvv, setCardCvv] = useState('');
-  const [cardName, setCardName] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState<'paypal' | 'mercadopago' | 'binance'>('paypal');
   const [mercadoPagoReference, setMercadoPagoReference] = useState('');
   const [binanceReference, setBinanceReference] = useState('');
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
@@ -55,11 +51,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
   const timeSlots = [
     '09:00 AM',
-    '10:30 AM',
-    '12:00 PM',
-    '02:30 PM',
-    '04:00 PM',
-    '05:30 PM'
+    '10:00 AM',
+    '11:00 AM'
   ];
 
   const getDaysInMonth = (month: number, year: number) => {
@@ -128,20 +121,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
       }
       setStep(3);
     } else if (step === 3) {
-      if (paymentMethod === 'card') {
-        if (!cardNumber || !cardExpiry || !cardCvv || !cardName) {
-          alert('Por favor, completa todos los campos de tu tarjeta.');
-          return;
-        }
-        if (cardNumber.replace(/\s/g, '').length < 16) {
-          alert('El número de tarjeta debe tener 16 dígitos.');
-          return;
-        }
-        if (cardCvv.length < 3) {
-          alert('El código CVV debe tener al menos 3 dígitos.');
-          return;
-        }
-      } else if (paymentMethod === 'mercadopago') {
+      if (paymentMethod === 'mercadopago') {
         if (!mercadoPagoReference.trim()) {
           alert('Por favor, ingresa el número de referencia de tu transferencia de Mercado Pago.');
           return;
@@ -178,6 +158,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     if (currentMonth < 6) return true; // Before July
     if (currentMonth > 6) return false; // After July
     return day < 15; // In July, before 15
+  };
+
+  // Helper to check if a day is weekend (Saturday or Sunday)
+  const isWeekend = (day: number) => {
+    const date = new Date(currentYear, currentMonth, day);
+    const dayOfWeek = date.getDay();
+    return dayOfWeek === 0 || dayOfWeek === 6; // 0 = Sunday, 6 = Saturday
   };
 
   return (
@@ -219,7 +206,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                   Agenda tu consulta virtual
                 </h3>
                 <p className="text-sm text-zinc-400 leading-relaxed mb-6">
-                  Da el primer paso hacia tu estabilidad migratoria en EE.UU. con un acompañamiento experto, profesional y empático.
+                  Da el primer paso hacia tu estabilidad migratoria en cualquier parte del mundo con un acompañamiento experto, profesional y empático.
                 </p>
 
                 <div className="space-y-4">
@@ -376,6 +363,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                                 }
 
                                 const isPast = isPastDay(day);
+                                const weekend = isWeekend(day);
                                 const formattedMonth = String(currentMonth + 1).padStart(2, '0');
                                 const formattedDay = String(day).padStart(2, '0');
                                 const dateString = `${currentYear}-${formattedMonth}-${formattedDay}`;
@@ -385,12 +373,12 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                                   <button
                                     key={`day-${day}`}
                                     type="button"
-                                    disabled={isPast}
+                                    disabled={isPast || weekend}
                                     onClick={() => handleDateSelect(day)}
                                     className={`aspect-square rounded-lg flex items-center justify-center text-xs font-bold transition-all cursor-pointer ${
                                       isSelected
                                         ? 'bg-[#E79923] text-brand-blue font-extrabold shadow-md'
-                                        : isPast
+                                        : isPast || weekend
                                         ? 'text-white/20 cursor-not-allowed bg-transparent'
                                         : 'bg-white/10 text-white border border-white/5 hover:bg-white/25 hover:text-white'
                                     }`}
@@ -406,7 +394,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                         {/* Time Slots */}
                         <div>
                           <span className="block text-xs font-extrabold uppercase tracking-wider text-brand-blue mb-2">
-                            Selecciona la hora (Zona Horaria Local)
+                            Selecciona la hora (Zona Horaria Argentina)
                           </span>
                           <div className="grid grid-cols-2 gap-2 max-h-[190px] overflow-y-auto border border-brand-blue/20 rounded-xl p-3 bg-brand-blue shadow-md">
                             {timeSlots.map(time => {
@@ -601,20 +589,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                         <label className="block text-xs font-extrabold uppercase tracking-wider text-brand-blue">
                           Selecciona tu Método de Pago
                         </label>
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                          <button
-                            type="button"
-                            onClick={() => setPaymentMethod('card')}
-                            className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all cursor-pointer ${
-                              paymentMethod === 'card'
-                                ? 'border-[#E79923] bg-[#FAF5EB] text-brand-blue font-bold ring-2 ring-[#E79923]/20 shadow-sm'
-                                : 'border-brand-blue/10 bg-brand-bg/5 text-brand-blue/70 hover:border-brand-blue/25 hover:bg-brand-bg/10'
-                            }`}
-                          >
-                            <CreditCard className="w-5 h-5 text-brand-blue/80" />
-                            <span className="text-xs font-bold">Tarjeta</span>
-                          </button>
-
+                        <div className="grid grid-cols-3 gap-2">
                           <button
                             type="button"
                             onClick={() => setPaymentMethod('paypal')}
@@ -671,82 +646,6 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
                       {/* Payment Forms */}
                       <div className="p-4 border border-brand-blue/10 bg-brand-bg/5 rounded-xl min-h-[180px] flex flex-col justify-center">
-                        {paymentMethod === 'card' && (
-                          <div className="space-y-4">
-                            <div className="flex items-center justify-between">
-                              <span className="text-xs font-bold text-brand-blue flex items-center gap-1.5">
-                                <CreditCard className="w-4 h-4 text-[#E79923]" /> Tarjeta de Crédito o Débito
-                              </span>
-                              <div className="flex gap-1">
-                                <span className="text-[9px] font-semibold bg-white px-1.5 py-0.5 rounded border border-brand-blue/10 text-brand-blue">Visa</span>
-                                <span className="text-[9px] font-semibold bg-white px-1.5 py-0.5 rounded border border-brand-blue/10 text-brand-blue">MC</span>
-                                <span className="text-[9px] font-semibold bg-white px-1.5 py-0.5 rounded border border-brand-blue/10 text-brand-blue">Amex</span>
-                              </div>
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                              <div className="md:col-span-2 text-left">
-                                <label className="block text-[10px] font-bold text-brand-blue/70 uppercase mb-1">Nombre del Tarjetahabiente</label>
-                                <input
-                                  type="text"
-                                  value={cardName}
-                                  onChange={e => setCardName(e.target.value)}
-                                  placeholder="Ej: María González"
-                                  className="w-full px-3 py-1.5 text-xs border border-brand-blue/15 rounded-xl focus:outline-none focus:border-[#E79923] bg-white text-brand-blue font-medium"
-                                />
-                              </div>
-
-                              <div className="text-left">
-                                <label className="block text-[10px] font-bold text-brand-blue/70 uppercase mb-1">Número de Tarjeta</label>
-                                <input
-                                  type="text"
-                                  maxLength={19}
-                                  value={cardNumber}
-                                  onChange={e => {
-                                    const value = e.target.value.replace(/\D/g, '');
-                                    const match = value.match(/(\d{1,4})/g);
-                                    setCardNumber(match ? match.join(' ') : value);
-                                  }}
-                                  placeholder="0000 0000 0000 0000"
-                                  className="w-full px-3 py-1.5 text-xs border border-brand-blue/15 rounded-xl focus:outline-none focus:border-[#E79923] bg-white text-brand-blue font-mono font-bold"
-                                />
-                              </div>
-
-                              <div className="grid grid-cols-2 gap-2 text-left">
-                                <div>
-                                  <label className="block text-[10px] font-bold text-brand-blue/70 uppercase mb-1">Vencimiento</label>
-                                  <input
-                                    type="text"
-                                    maxLength={5}
-                                    value={cardExpiry}
-                                    onChange={e => {
-                                      const value = e.target.value.replace(/\D/g, '');
-                                      if (value.length > 2) {
-                                        setCardExpiry(`${value.slice(0, 2)}/${value.slice(2, 4)}`);
-                                      } else {
-                                        setCardExpiry(value);
-                                      }
-                                    }}
-                                    placeholder="MM/AA"
-                                    className="w-full px-3 py-1.5 text-xs border border-brand-blue/15 rounded-xl focus:outline-none focus:border-[#E79923] bg-white text-brand-blue font-semibold text-center"
-                                  />
-                                </div>
-                                <div>
-                                  <label className="block text-[10px] font-bold text-brand-blue/70 uppercase mb-1">CVV</label>
-                                  <input
-                                    type="password"
-                                    maxLength={4}
-                                    value={cardCvv}
-                                    onChange={e => setCardCvv(e.target.value.replace(/\D/g, ''))}
-                                    placeholder="•••"
-                                    className="w-full px-3 py-1.5 text-xs border border-brand-blue/15 rounded-xl focus:outline-none focus:border-[#E79923] bg-white text-brand-blue font-bold text-center"
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        )}
-
                         {paymentMethod === 'paypal' && (
                           <div className="text-center py-4 space-y-3">
                             <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-50 text-blue-600 rounded-full border border-blue-100 mx-auto">
@@ -844,10 +743,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                           {isProcessingPayment ? (
                             <>
                               <span className="w-4 h-4 rounded-full border-2 border-white border-t-transparent animate-spin" />
-                              Procesando Pago Seguro...
+                              Procesando...
                             </>
-                          ) : paymentMethod === 'card' ? (
-                            'Pagar y Confirmar Cita'
                           ) : paymentMethod === 'paypal' ? (
                             'Pagar con PayPal y Confirmar Cita'
                           ) : paymentMethod === 'mercadopago' ? (
