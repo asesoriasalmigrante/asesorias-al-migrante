@@ -109,30 +109,48 @@ export default function App() {
   const DEFAULT_TESTIMONIALS: Testimonial[] = [
     {
       id: 'test-1',
-      name: 'María G.',
-      country: 'México',
-      text: 'Daniela me ayudó a entender mis opciones cuando ya no sabía qué hacer. Su claridad y paciencia hicieron toda la diferencia.',
+      name: 'Benjamin G.',
+      country: 'Brasil',
+      text: 'Te quería agradecer porque eran más de 10 meses esperando sin obtener respuestas claras. Menos de un mes: Pasaporte en Mano. Continúa con esa labor increíble y con esa dedicación al 100%. Gracias Asesorías al Migrante.',
       stars: 5,
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=250&h=250',
-      flag: '🇲🇽'
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=250&h=250',
+      flag: '🇧🇷'
     },
     {
       id: 'test-2',
-      name: 'José R.',
-      country: 'Colombia',
-      text: 'Me acompañó en cada paso de mi proceso y siempre estuvo disponible para mis dudas. Muy profesional y humana.',
+      name: 'Veronica G.',
+      country: 'Costa Rica',
+      text: 'De verdad mil gracias por todo el apoyo, ya están en camino los apostilles, gracias a toda tu asesoría hemos podido avanzar con seguridad en todo el proceso y siento que en un tiempo récord. No me esperaba que pudiese ser tan rápido y efectivo el proceso, y eso que estábamos contra reloj, pero todo se ha hecho en tiempo óptimo. Siento la tranquilidad de que todo está en orden y que me aclaraste cada duda con paciencia. También me encantó que fuiste muy atenta y cada día nos consultabas o tomabas acción sobre algún proceso.',
       stars: 5,
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=250&h=250',
-      flag: '🇨🇴'
+      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=250&h=250',
+      flag: '🇨🇷'
     },
     {
       id: 'test-3',
-      name: 'Ana L.',
-      country: 'Venezuela',
-      text: 'La asesoría fue muy clara y honesta. Me sentí escuchada y con un plan claro para seguir adelante.',
+      name: 'Kimberlyn',
+      country: 'Brasil',
+      text: 'Bueno, primeramente para agradecerte por la ayuda y por siempre atender a mis dudas. Te comento que mandé mis documentos a través del consulado honorario Kimberlyn en Brasil.',
       stars: 5,
-      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=250&h=250',
-      flag: '🇻🇪'
+      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=250&h=250',
+      flag: '🇧🇷'
+    },
+    {
+      id: 'test-4',
+      name: 'Kyska',
+      country: 'Brasil',
+      text: 'Los procesos de apostillas de las partidas de nacimiento eran solo en las embajadas y cuando me tocó ir vi como devolvía a varias personas. Yo iba tranquila y segura porque me habían asesorado, y la funcionaria que me hizo la recepción se impresionó porque tenía todo.',
+      stars: 5,
+      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=250&h=250',
+      flag: '🇧🇷'
+    },
+    {
+      id: 'test-5',
+      name: 'Deereck',
+      country: 'España',
+      text: 'Gracias a toda la orientación recibida pude iniciar el proceso de regularización en España. Ya me llegó el número de expediente, solo esperando la resolución.',
+      stars: 5,
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=250&h=250',
+      flag: '🇪🇸'
     }
   ];
 
