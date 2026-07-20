@@ -24,7 +24,7 @@ export const Logo: React.FC<LogoProps> = ({
     <div id="brand-logo-container" className={`flex items-center gap-3.5 flex-shrink-0 ${className}`}>
       {/* Logo Image */}
       <img 
-        src="/src/assets/images/logo_dark_bg.png" 
+        src="/logo_dark_bg.png" 
         alt="Asesorías al Migrante Logo"
         className="w-12 h-12 object-contain flex-shrink-0"
       />
